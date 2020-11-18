@@ -1,0 +1,651 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Gillz dashboard</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="417d1bee-7e24-4f8c-a002-387a32c67f02" class="page sans"><header><h1 class="page-title">Gillz dashboard</h1></header><div class="page-body"><h1 id="0b4a49a5-791a-4f92-8d42-95318bda3a28" class="">Waar lopen we tegen aan? (Probleemstelling)</h1><p id="286481fe-729a-4ea8-9610-3df48e22beb4" class="">Binnen het Gillz Developers team is het gewenst een aantal stukken informatie centraal weer te geven op de TV in het kantoor. Op dit moment is deze informatie niet of decentraal beschikbaar.</p><h2 id="ae7a5b97-63ed-45ab-aae5-337408c466b7" class="">Wat zoeken we? (Doelstelling)</h2><p id="3fb82719-5edc-4508-9c6a-1b938235aeb0" class="">Een website/dashboard waarop verschillende stukken globaal worden weergegeven met
+eventuele verdieping waar gewenst. Dit dashboard moet zowel werken op de TV die
+beschikbaar is in het Gillz Development kantoor, als op de individuele developer zijn
+machine.</p><p id="a5c19998-db46-4cf0-96f2-f38000f3e4c9" class="">De standaard weergave bevat een globaal overzicht van de huidige status, waar vanuit de
+gebruiker door kan klikken naar een uitgebreid overzicht binnen het onderwerp wat
+gekozen is om zo tot extra informatie te komen.
+Ook willen we een globale berichten box hebben met meldingen die moeten worden
+opgepakt.</p><p id="b567442c-c184-4277-aee1-c533e9caa365" class="">Lijst met gewenste informatie zoals op huidige moment bekend is:</p><ul id="c72d051f-6405-4656-815d-91d598d03642" class="bulleted-list"><li>Server status en statistieken</li></ul><ul id="9e346386-299c-41df-935d-10f1a58d0060" class="bulleted-list"><li>Afwezige collega’s</li></ul><ul id="ca2da039-7b5a-4152-8bb8-2faefa5c1be0" class="bulleted-list"><li>Huidige projecten</li></ul><p id="e60d4833-0949-4bae-918f-bb0c4b5f8a95" class="">o Deadline wanneer deze bekend is</p><p id="0ff0af0f-74c1-42b7-bbff-3f71bba20f55" class="">o Optioneel: Koppeling met Azure DevOPS voor huidige sprint status</p><ul id="f1589344-8016-49c4-b8dd-df277f87fbe8" class="bulleted-list"><li>Aankomende events/belangrijke momenten</li></ul><ul id="02ddb2b5-f5c1-478b-8967-d03dd228a183" class="bulleted-list"><li>Statistieken over support tickets in ZenDesk</li></ul><p id="12632b06-b0b5-4cb0-b24f-8b14425b5b38" class="">o Incl. notificatie van nieuwe melding</p><h2 id="dce3269c-ad57-432b-a401-33b34adb455b" class="">Voor wie is dit bedoeld? (Doelgroep)</h2><p id="fb9591f7-61de-4b32-b6f0-51de9fbfdd94" class="">Medewerkers van Gillz die betrokken zijn bij de (high code) development.</p><h2 id="cefa722b-71eb-422d-8f14-d9814b6a8fac" class="block-color-red"><mark class="highlight-gray">Wat moet er (o.a.) functioneel uitgedacht worden? (Scope)</mark></h2><ul id="c98fbc63-9d3c-4c61-a73d-a250b70ff483" class="bulleted-list"><li>Welke informatie gewenst is binnen het team weer te geven op dit dashboard,
+waar de behoefte het grootst aan is (MoSCoW?)</li></ul><ul id="722883bd-83d1-4740-a097-7395636c347b" class="bulleted-list"><li> Bij het bepalen van welke informatie op het Dashboard moet komen is het
+ook belangrijk te onderzoeken welke informatie daadwerkelijk handig is om
+weer te geven, of eventueel op andere schermen of zelfs niet gebruikt
+moet worden</li></ul><ul id="e9121380-dd5b-49cd-bbfa-9724b96f0ff2" class="bulleted-list"><li>Hoe en waar kunnen de verschillende stukken informatie worden opgehaald en
+verwerkt zodat deze goed inzichtelijk voor de medewerkers</li></ul><ul id="8ada290d-8cac-4c28-808c-b70b2658fb1d" class="bulleted-list"><li>Welke stukken informatie kunnen automatisch en welke moeten handmatig
+verzameld worden</li></ul><h2 id="6cec32d9-5f82-4d5e-a115-1713fd637d09" class="">Wat moet er (o.a.) grafisch uitgewerkt worden?</h2><ul id="f6845e6e-c3fc-4180-b0ca-a940aba5d072" class="bulleted-list"><li>Ontwerp voor het dashboard weergaven waarop alle informatie globaal
+beschikbaar is</li></ul><ul id="4c2c12d8-c050-4ec1-a54a-7c49b29810fb" class="bulleted-list"><li>Ontwerp voor de individuele stukken informatie die inzichtelijk moeten zijn.</li></ul><ul id="6ef0e977-c9ae-4978-8bc0-535327896874" class="bulleted-list"><li>Ontwerp moet de Gillz huisstijl volgen</li></ul><h2 id="51eccba7-1615-4e81-ab4c-5770d94ef975" class="">Wat moet er (o.a.) technisch gebouwd worden?</h2><p id="c5f92b50-55ae-4104-b304-c37eeda2d85c" class="">
+</p><ul id="9645564c-6fce-4261-b622-a2d85e2337f0" class="bulleted-list"><li>Een website/PWA (voorkeur gebouwd in React/TypeScript) voor het dashboard en
+detailinformatie</li></ul><ul id="1347cc55-f412-4c52-aa36-2d6e4bdbd751" class="bulleted-list"><li>Een backend (voorkeur gebouwd in NestJS/Postgres) waarin de informatie van het
+Dashboard opgeslagen kan worden (evt. kan deze ook opgeleverd worden/aan
+samengewerkt worden)</li></ul><h2 id="7092664c-4b67-48db-8aba-396828c6c97e" class="">Waar moet (o.a.) op gelet worden? (Uitdaging)</h2><ul id="341cbe88-b7a2-46b0-934b-f9b7ab67d599" class="bulleted-list"><li>De technische haalbaarheid van het gehele project, denk hierbij aan de kennis van
+de genoemde frameworks.</li></ul><ul id="30ac9104-3030-448f-8867-4df5b4eebdb7" class="bulleted-list"><li>Mogelijkheid van zoveel mogelijk informatie geautomatiseerd op te halen bij
+externe systemen zodat er minder onderhoud/invoerwerk aan de gebruikers kant
+zit</li></ul><ul id="d27a6a06-09df-4291-9751-03e97bcdb577" class="bulleted-list"><li>Gemak: het moet extreem gemakkelijk zijn voor iedereen binnen de ruimte om de
+informatie goed te zien zonder dat je binnen een beperkte straal van het scherm je
+bevind</li></ul><ul id="9f489e28-5e35-4b40-9799-d9d5bfe41cce" class="bulleted-list"><li>Het dashboard zo te maken dat de informatie realtime wordt bijgewerkt wanneer
+er iets aangepast en niet d.m.v. pulling</li></ul></div></article></body></html>

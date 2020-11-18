@@ -1,0 +1,636 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Databases</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="15d42d9b-5680-488b-8494-135cb5b80f23" class="page sans"><header><h1 class="page-title">Databases</h1></header><div class="page-body"><h1 id="73ec12ee-c837-42f8-97ac-3869abadfb7b" class="">Databases</h1><p id="777e9fe5-aa6a-4af5-b52e-2e1720fb0080" class="">Een keuze voor de juiste database is van groot belang voor het project. De gebruiker zal niks merken van de gekozen database maar de development methode kan compleet verschillen. </p><h2 id="133a2325-2751-4533-ab54-5e80d31544b0" class="">Relationele vs non-relationele databases</h2><p id="fb674128-7cec-477c-b18b-222760d9526c" class=""><a href="https://www.pluralsight.com/blog/software-development/relational-vs-non-relational-databases">https://www.pluralsight.com/blog/software-development/relational-vs-non-relational-databases</a></p><p id="60db1965-b8be-4310-a20b-86f26f80c5b0" class="">Eerst is het belangrijk om te kiezen tussen een relationele of een non rationele database. Om deze keuze te maken doe ik onderzoek naar de verschillen en de implementatie die ik nodig ga hebben tijdens dit project. </p><h3 id="5d43b22b-16e7-4925-b550-c210e72ea41d" class="">Relationele/sql database</h3><p id="65de1734-6963-4286-b395-de247ecbe1db" class="">Een Relationele database wordt opgebouwd uit verschillende tabellen met rijen. Je kunt echter binnen een relationele database relaties leggen tussen verschillende tabellen. zie het voorbeeld hieronder. </p><figure id="9a8f777f-4a3d-449b-8e17-ddca1a6d9ab2" class="image"><a href="https://www.pluralsight.com/content/pluralsight/en/blog/software-development/rel/relational-vs-non-relational-databases/jcr:content/main/image/image-res.img.118db833-23cf-4566-9286-19cae408928c.png"><img src="https://www.pluralsight.com/content/pluralsight/en/blog/software-development/rel/relational-vs-non-relational-databases/jcr:content/main/image/image-res.img.118db833-23cf-4566-9286-19cae408928c.png"/></a></figure><p id="d5ff70e4-417d-409e-8021-57efb315b62c" class="">Binnen mijn project is het bijvoorbeeld handig om werknemers te koppelen aan projecten/deadlines. Om dit te verwezenlijken kan dus het beste een koppel tabel opgezet worden waarin de project id en de member id aan elkaar gekoppeld worden. Hierdoor kan het via 1 query opgevraagd worden uit de database en krijg je altijd een goede dataset terug. Een nadeel om te overwegen is dat een relationele database wel een stuk extra complexiteit toevoegt. </p><p id="e542e374-3303-4c1f-9691-c081d199c3bf" class="">
+</p><p id="1bc1835a-79b3-4c42-ab65-cc0f9b45e7ed" class="">Voorbeelden van relationele databases die gebruikt worden in combinatie met NestJS.</p><ul id="5b1852b0-e2a8-4a26-90f1-504e8b02ad48" class="bulleted-list"><li>SQL Server Express </li></ul><ul id="c9b6a768-4bdb-45e1-b024-1f5c659cd11f" class="bulleted-list"><li>PostgreSQL</li></ul><ul id="a1ad536b-39e7-4cbd-9f9b-5d30056f3f64" class="bulleted-list"><li>SQLite</li></ul><ul id="19ec27c2-96d9-4048-ac36-c6de8b72e761" class="bulleted-list"><li>MySQL </li></ul><ul id="47de3174-93aa-4f58-a846-bf394ddf922b" class="bulleted-list"><li>MariaDB</li></ul><p id="5af6008d-edd8-44a0-809a-7c4ab0504187" class="">
+</p><p id="8f3181f6-ca33-42d9-a4fc-c990864b1ef5" class=""><strong>opsomming citaat van relationele databases:</strong></p><ul id="d71eba78-6b51-4110-aed2-3bbd2724f905" class="bulleted-list"><li>They work with structured data.</li></ul><ul id="13f32114-f87c-45b9-a03d-e4e832fc0dfd" class="bulleted-list"><li>Relationships in the system have constraints, which promotes a high level of data integrity.</li></ul><ul id="bfe17e64-21b8-480b-bc9b-d74add494d3c" class="bulleted-list"><li>There are limitless indexing capabilities, which results in faster query response times.</li></ul><ul id="31b695cd-8bf3-495b-b28d-59e241b673a5" class="bulleted-list"><li>They are excellent at keeping data transactions secure.</li></ul><ul id="72403355-22c4-48e6-9655-cbdbd999d4e8" class="bulleted-list"><li>They provide the ability to write complex SQL queries for data analysis and reporting.</li></ul><ul id="7f0ec250-27bd-4fc1-a85f-7ca661bc546a" class="bulleted-list"><li>Their models can ensure and enforce business rules at the data layer adding a level of data integrity not found in a non-relational database.</li></ul><ul id="90eefb7c-87d6-4139-b358-e48dc0be5870" class="bulleted-list"><li>They are table and row oriented.</li></ul><ul id="301bb135-65ec-4617-93df-1621317cec87" class="bulleted-list"><li>They Use SQL (structured query language) for shaping and manipulating data, which is very powerful.</li></ul><ul id="8ca4b6e3-d7e4-4720-8dcb-800da6e9a88f" class="bulleted-list"><li>SQL database examples: MySql, Oracle, Sqlite, Postgres and MS-SQL. NoSQL database examples: MongoDB, BigTable, Redis, RavenDb, Cassandra, Hbase, Neo4j and CouchDb.</li></ul><ul id="498d3945-16e1-4598-9334-40970bc0b092" class="bulleted-list"><li>SQL databases are best fit for heavy duty transactional type applications.</li></ul><p id="a4c90ff5-75bf-4aa3-8000-5bf2868de3f8" class="">
+</p><h3 id="72ef3ec0-b706-46e1-bda4-2b83c83f5010" class="">non relationele / nosql database</h3><p id="61f9685c-33be-41a0-bba0-2ee83105fd70" class="">nosql databases maken in tegenstelling tot relationele databases geen gebruik van tabellen met data maar van documenten. Deze documenten kunnen veel verschillende vormen van data opslaan en worden dus vaak gebruikt wanneer er een grote hoeveelheid data dat geen betrekking tot elkaar heeft opgeslagen moet worden. </p><p id="5c97ee93-b625-40f9-ae08-240d7fedde16" class="">
+</p><p id="ea1e0384-d6c0-4d47-856b-4b3e805f07ef" class=""><strong>Key-value stores:</strong></p><p id="d64bd18e-1173-4945-ae4d-aac8147d6e27" class="">De simpelste vorm van een nosql database. Hierin wordt data opgeslagen via key en value paren. Door de key op te zoeken in de database krijg je de value terug. Simpelere vormen van databases bestaan niet.</p><p id="19ceb876-a4cb-4158-83bb-4ba1f30f333f" class="">
+</p><p id="88f494f2-77e3-4c18-a3b9-74b510259130" class=""><strong>Document stores:</strong></p><p id="50199fd4-e997-4f64-a5b1-ed754970f7cc" class="">deze zijn iets complexer dan de key-value stores maar zijn ongeveer hetzelfde. In deze vorm kan echter een key verschillende vormen aannemen. Een key kan bijvoorbeeld een array met objecten bevatten.</p><p id="1d4912ab-73fc-45fd-9c8c-3ee2357d27f2" class="">
+</p><p id="ee065c3d-e858-494b-a54a-e5850922f725" class=""><strong>Graph databases:</strong></p><p id="df689b47-37b1-418f-bf9a-35d73bc1d91b" class="">Dit is de meest geavanceerde vorm en nieuwste vorm van nosql databases. Dit is een soort hybride vorm tussen een nosql en sql database. Er kunnen namelijk relaties worden gelegd tussen verschillende onderdelen. </p><p id="99d7ade7-762f-4882-ac1e-0b0caaddee31" class="">
+</p><p id="5a63ae58-222f-4fb6-a3e0-56fc05ec97e1" class=""><strong>opsomming nosql database functionaliteiten: </strong></p><ul id="2bd414b7-2243-4f14-8bd4-ffd3df0c3dda" class="bulleted-list"><li>They have the ability to store large amounts of data with little structure.</li></ul><ul id="6db95401-7d3b-493a-a141-cecb1a564c32" class="bulleted-list"><li>They provide scalability and flexibility to meet changing business requirements.</li></ul><ul id="0b365352-4d3b-47cd-96cf-41f69be32694" class="bulleted-list"><li>They provide schema-free or schema-on-read options.</li></ul><ul id="84e25f34-edbf-42ac-a279-efe036877b46" class="bulleted-list"><li>They have the ability to capture all types of data “Big Data” including unstructured data.</li></ul><ul id="d82ea576-c93a-4237-af33-a16b63f56718" class="bulleted-list"><li>They are document oriented.</li></ul><ul id="01f935b9-137b-4818-bbab-abdb6769b095" class="bulleted-list"><li>NoSQL or non-relational databases examples:MongoDB, Apache Cassandra, Redis, Couchbase and Apache HBase.</li></ul><ul id="869976b9-5fc3-4054-9f11-676b7436f670" class="bulleted-list"><li>They are best for Rapid Application Development. NoSQL is the best selection for flexible data storage with little to no structure limitations.</li></ul><ul id="d86ade0c-cda8-45a2-87ea-b3530fbea4d1" class="bulleted-list"><li>They provide flexible data model with the ability to easily store and combine data of any structure without the need to modify a schema.</li></ul><p id="507fce41-af4b-4218-a940-a4d20b8112d1" class="">
+</p><h2 id="9239e391-a077-4a7a-8528-5bdfa6447d4c" class="">ORM</h2><p id="066033ab-3623-4163-bd96-dc6b87b2a7ed" class=""><a href="https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a">https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a</a></p><p id="1adb7333-8277-40dc-a979-7663fee99eba" class="">ORM betekend object relational mapper. Kort samengevat is een orm een laag die ervoor zorgt dat je in je eigen codetaal database query&#x27;s kan uitvoeren. Zonder orm zal je dus normale sql queries uit moeten voeren. </p><p id="7fdd4905-068d-478e-a732-ba094fa4b47b" class=""><strong>Voorbeeld sql query: </strong></p><pre id="8f9fdf65-c0cc-41c6-b988-94a08a7d5589" class="code"><code>SELECT * FROM users WHERE email = &#x27;test@test.com&#x27;;</code></pre><p id="d868ecd9-717e-407e-b438-39bfb6ee7957" class="">Voorbeeld orm query in javascript: </p><pre id="03b545c8-4122-4fee-9314-781f051c5162" class="code"><code>var orm = require(&#x27;generic-orm-libarry&#x27;);
+var user = orm(&quot;users&quot;).where({ email: &#x27;test@test.com&#x27; });</code></pre><p id="1b36e492-c30c-458c-86a9-b9c668e3467b" class="">Er zijn verschillende ORM packages op npm om te gebruiken maar TypeORM is de grootst ondersteunde en past het beste bij het typescript van NestJS.</p></div></article></body></html>
