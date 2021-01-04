@@ -1,0 +1,627 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Testplan</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5fac9c30-d55c-40cf-b314-2ebe20a2046c" class="page sans"><header><h1 class="page-title">Testplan</h1></header><div class="page-body"><p id="a68c433b-b543-4c79-9156-2feebb28e8e6" class="">Context: Gillz kantoor</p><p id="48e146e1-3848-4206-9373-8bb410fb2b41" class="">Testpersoon: </p><p id="03e099ee-91d5-488c-b5b3-91502f263caf" class="">Werkzaam als:</p><p id="788ba649-1e6e-46e3-b058-1ba0384fb50a" class="">Vorm: vragen en scenario&#x27;s</p><h2 id="5a5700b5-facf-4402-b755-a212dd4277f5" class="">Introductie voor testpersoon</h2><p id="4b060358-d62a-4033-9efa-a2f5097ea672" class="">Hi, mijn naam is Stephan en als je hier zit heb je hoogstwaarschijnlijk wel een duidelijk idee waarom ik je hiervoor heb uitgenodigd. Deze usability test gaat over het Gillz Development dashboard. Het doel van deze test is om nieuwe inzichten te krijgen over het dashboard om een nieuwe iteratieslag te maken. </p><h3 id="2d259003-07d3-49a1-b288-d4fd0da7ac16" class="">Gillz dashboard samengevat</h3><p id="74c1eafb-814d-4325-8157-e6723071440b" class="">Het hoofddoel van het Gillz dashboard is om de &quot;situational awareness&quot; van de developers te verhogen. Doordat verschillende informatiebronnen samen komen in het dashboard zal het voor de developers een duidelijker overzicht moeten geven van de operationele situatie van Gillz en het team.</p><h3 id="ccc8827e-193a-4922-b349-d4ffa143a204" class="">Wat moet je vooraf weten</h3><ul id="e53887f9-d986-408d-85da-c2f391a840ac" class="bulleted-list"><li>Je kan tijdens deze test niks fout doen. </li></ul><ul id="4e1188b1-2800-4bdf-a2f7-47f387e69ad3" class="bulleted-list"><li>Ik wil je vragen om hardop na te denken.</li></ul><ul id="83d0d034-fa09-46d9-b8b7-8619b3c84d79" class="bulleted-list"><li>Er wordt een audio recording gemaakt.</li></ul><ul id="ddabcf35-120c-4650-a65f-d8be6299e451" class="bulleted-list"><li>Als je vragen hebt, gewoon stellen.</li></ul><ul id="693a6395-4246-4f9c-83bb-83bbd2886e2f" class="bulleted-list"><li>Tijdens de test zal ik je een hoop vragen stellen.</li></ul><h1 id="191394a6-94a5-4fcc-bbb6-93bce9e8b8db" class="">De test</h1><h2 id="e120e29a-5676-4889-9b42-e100bd334844" class="">Overzichtspagina</h2><p id="36ce2176-defb-4789-a00e-816ab9867bf8" class="">Wat is je eerste gedachte bij het zien van de overzichtspagina?</p><p id="7d3c0ac3-799f-41ba-aab3-866f59f70348" class="">Wat voor functie heeft elk getoonde component in jouw ogen?</p><p id="47813125-c486-447d-b955-7594e254e705" class="">Je ziet dat server 10 niet beschikbaar is, wat doe je nu?</p><h2 id="57d9f8b1-7bf8-4455-bedd-0fe2638159bc" class="">Deadlines pagina</h2><p id="391c67eb-4e0c-4dda-91ec-e4b05d4d84b5" class="">Wat is je eerste gedachte bij het zien van de deadlines pagina?</p><p id="6d62d0b2-a8b5-4f0e-a2a5-61ac9e57fc81" class="">S<strong>cenario:</strong> je bent bezig met een project HTG. Je hoort dat de deadline van het project op 2 weken van vandaag ligt. </p><p id="725a7bfa-645b-4a38-8176-496bb92a0791" class=""><strong>Opdracht: </strong>Voeg de deadline toe.</p><p id="77924505-766b-4cd8-99a1-b3aa93cceada" class=""><strong>Scenario: </strong>We zijn een week verder en omdat de deadline niet haalbaar blijkt hebben we een week extra gekregen van de klant.</p><p id="692ba17e-1f7b-4916-9ddc-84355df23097" class=""><strong>Opdracht: </strong>Schuif de deadline een week op.</p><h2 id="13416455-7705-4763-b475-dc046c2a866b" class="">Zendesk pagina</h2><p id="1eb8dbba-edb4-48e8-90dd-8aecb31829c9" class="">Wat is je eerste gedachte bij het zien van de zendesk pagina?</p><p id="92a37627-ab68-485a-a877-69e752b1fece" class="">Wat valt je op aan de prioriteiten lijst?</p><p id="76a30af6-8963-4e88-b593-520f00615108" class=""><strong>Opdracht: </strong>klik op het oudste ticket met de prioriteit &quot;urgent&quot;</p><h2 id="615c55e0-0a85-4fb0-8a4c-48402dcd29ed" class="">Notities pagina</h2><p id="3ade9328-8f9f-41ed-ae37-8d34c4e53226" class="">Wat is je eerste gedachte bij het zien van de notities pagina?</p><p id="69614e4a-9013-47bb-8b93-a01e5a97e6ef" class=""><strong>opdracht: </strong>Voeg een notitie toe aan het dashboard.</p><h2 id="aefbc574-ed1f-4c2a-9398-4b427ae23404" class="">Projecten pagina</h2><p id="1e7e84f4-9314-45f8-b0c1-aa7c8f3c9d39" class="">Wat valt je als eerste op aan deze pagina?</p><p id="fe47fc33-3986-40ae-82ba-56dcdbfaa30f" class="">Wat voor kansen zie jij nog op deze pagina?</p><h2 id="2dc50a48-f3ba-48a1-990b-5429ca83d637" class="">Builds pagina</h2><p id="07a7cbe8-3fd7-4d84-aeff-c97676527fd2" class="">Wat is je eerste gedachte bij het zien van deze pagina?</p><p id="da543641-f86b-406f-95fc-4a0c304f49e9" class="">Mis je informatie die je wel graag zou willen zien van de pipeline?</p><p id="a47704b8-61ec-4159-9035-ed1c75d9dabd" class="">Denk je dat pagination net als bij de zendesk pagina fijner zou zijn?</p><h2 id="d60b9673-8dfb-4ede-874a-fb6d1d6c8a92" class="">Member pagina</h2><p id="a605ad09-7a05-45c2-afc2-5c3310c8075f" class="">Wat is je eerste gedachte bij deze pagina?</p><p id="ed5abc6b-61d2-47f2-b247-27f337aea28e" class=""><strong>Scenario: </strong>Bij de standup blijkt een team member die dag afwezig te zijn.</p><p id="1e75ab36-b4ac-447b-ba92-3ec423ee5708" class=""><strong>Opdracht: </strong>Zet de afwezige collega op afwezig.</p><p id="f420bf1d-a43c-4925-b201-8c9b032c0e3a" class=""><strong>Opdracht:</strong> Bekijk de deadlines en kijk of de afwezigheid impact heeft op de deadlines.</p><h2 id="0d2f0ae7-82e6-45b8-874d-52cde6d834fa" class="">Afsluiting</h2><p id="f81e085d-b5e5-4a27-89a8-c239e61ef99b" class="">Nog overige opmerkingen?</p><h2 id="d370a182-ca55-4b3a-8dec-c5abe8a06ef9" class="">Bronnen</h2><p id="4ab99ed8-6a2a-463c-9e5b-2b62d9c729b2" class=""><a href="https://www.nngroup.com/articles/usability-testing-101/">https://www.nngroup.com/articles/usability-testing-101/</a></p><p id="190838bc-9ed1-46f5-be35-391fe69d3711" class=""><a href="https://www.nngroup.com/articles/task-scenarios-usability-testing/">https://www.nngroup.com/articles/task-scenarios-usability-testing/</a></p><p id="c9071b27-3bb7-4277-94b8-70b3f803f496" class=""><a href="https://www.nngroup.com/videos/how-setup-desktop-usability-test/">https://www.nngroup.com/videos/how-setup-desktop-usability-test/</a></p><p id="0e57abde-f7f4-4d38-9211-d1a0e3932e7c" class=""><a href="http://sensible.com/downloads/test-script-web.pdf">http://sensible.com/downloads/test-script-web.pdf</a></p><p id="8049b7ca-16aa-47d1-b988-a78e9f21a9cd" class=""><a href="https://www.hotjar.com/usability-testing/template-checklist/">https://www.hotjar.com/usability-testing/template-checklist/</a></p></div></article></body></html>
