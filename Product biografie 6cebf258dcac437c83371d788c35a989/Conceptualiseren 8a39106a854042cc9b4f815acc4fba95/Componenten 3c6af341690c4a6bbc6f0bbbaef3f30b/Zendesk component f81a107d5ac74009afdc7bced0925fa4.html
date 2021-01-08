@@ -675,6 +675,147 @@ blockquote {
             }
             }, 6000);
         }
-    }</code></pre><h1 id="fa364d5a-2664-4902-bab0-e4ace19944d1" class="">Design</h1><figure id="1afc7b78-a43f-4fbd-ab1b-cea4c225cc90" class="image"><a href="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2020-11-12_at_15.17.53.png"><img style="width:996px" src="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2020-11-12_at_15.17.53.png"/></a></figure><p id="f84b1a3c-a65f-4673-910d-19a28e0918b7" class="">Het eerste ontwerp is net zoals het build component een list view. Dit is de meest overzichtelijke manier om een grote hoeveelheid data te tonen op een dashboard. De status badge veranderd van kleur wanneer de status wijzigt. Waiting for reply is groen want dan wordt er van de Dev geen actie meer vereist. Open is rood omdat er een actie wordt vereist van de Dev en de solved status is grijs.</p><p id="077257ef-6930-4c78-9933-cd87fe1facdc" class="">
-</p><figure id="eb82ec26-e61a-4e53-9a00-3dd7cf405fe7" class="link-to-page"><a href="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Algemene%20feedback%20Zendesk%20component%20eb82ec26e61a4e539a003dd7cf405fe7.html">Algemene feedback Zendesk component</a></figure><p id="35816d3d-0d3b-4c48-ba78-aa8f44eeb896" class="">
+    }</code></pre><h1 id="fa364d5a-2664-4902-bab0-e4ace19944d1" class="">Design</h1><figure id="1afc7b78-a43f-4fbd-ab1b-cea4c225cc90" class="image"><a href="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2020-11-12_at_15.17.53.png"><img style="width:996px" src="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2020-11-12_at_15.17.53.png"/></a></figure><p id="f84b1a3c-a65f-4673-910d-19a28e0918b7" class="">Het eerste ontwerp is net zoals het build component een list view. Dit is de meest overzichtelijke manier om een grote hoeveelheid data te tonen op een dashboard. De status badge veranderd van kleur wanneer de status wijzigt. Waiting for reply is groen want dan wordt er van de Dev geen actie meer vereist. Open is rood omdat er een actie wordt vereist van de Dev en de solved status is grijs.</p><h2 id="c1f529ab-06a5-4c9b-9087-32fff5d1a73f" class="">Iteratie 1</h2><p id="27b8a2bc-d417-40c1-9329-dcbccf12e2c6" class="">De eerste iteratie op het ontwerp gaat over de eerste gecodeerde versie van het component. Ik kwam er namelijk achter dat de Zendesk api meerdere nieuwe data aanbood na mijn eerste onderzoek. Zo kon ik ook onderwerpen en links naar tickets etc uitlezen. </p><h3 id="7093da32-70ee-4639-9ce0-db329537aec1" class="">Uiteindelijke vorm 2e iteratie</h3><p id="ae682430-5552-40a2-abd1-01b5e317b0d4" class="">Uiteindelijk heb ik in samenspraak met de developers de keuze gemaakt om de volgende data te tonen: </p><ul id="9af0f43e-f01a-4dff-9098-baaa01abc3f7" class="bulleted-list"><li>toegewezen persoon</li></ul><ul id="13bda2c4-ec96-4f21-b296-5200967cf39f" class="bulleted-list"><li>Onderwerp</li></ul><ul id="1c94aa7b-4737-4622-9b08-e65a46b5ade1" class="bulleted-list"><li>Beschrijving</li></ul><ul id="a8863d39-01cc-4077-a529-ba1ff0bb7784" class="bulleted-list"><li>Datum van toevoegen</li></ul><ul id="999769f8-cd54-4147-8850-f4b83b20da98" class="bulleted-list"><li>Prioriteit</li></ul><ul id="aceb1ee8-b860-48a8-8e9a-63e066be80c9" class="bulleted-list"><li>Link</li></ul><h2 id="7a328d71-95ee-4a97-950a-51da7eb4badb" class="">Code die alle tickets rendered</h2><pre id="bf5669af-4d8d-491b-9051-a572479aa3dc" class="code"><code>&lt;div className={&#x27;zendesk-container&#x27;} style={{height: props.containerHeight}}&gt;
+            &lt;table className={&#x27;zendesk-container__table&#x27;} style={{width: props.tableWidth}}&gt;
+                &lt;tbody className={&#x27;zendesk-container__table__body&#x27;}&gt;
+                    &lt;tr className={&#x27;zendesk-container__table__body__head&#x27;}&gt;
+                        &lt;th&gt;Id&lt;/th&gt;
+                        &lt;th&gt;Assigned&lt;/th&gt;
+                        &lt;th&gt;Subject&lt;/th&gt;
+                        &lt;th style={{display: props.descriptionDisplay}}&gt;Description&lt;/th&gt;
+                        &lt;th&gt;Created&lt;/th&gt;
+                        &lt;th&gt;Last update&lt;/th&gt;
+                        &lt;th&gt;Status&lt;/th&gt;
+                    &lt;/tr&gt;
+                    {currentPageData.map((ticketData, index) =&gt; (
+                        &lt;tr key={index} className={&#x27;zendesk-container__table__body__data&#x27;} onClick={(e) =&gt; {
+                            const url: string = &#x27;https://gillz.zendesk.com/agent/tickets/&#x27; + ticketData.id;
+                            window.open(url);
+                        }}&gt;
+                            &lt;td style={{maxWidth: props.columnWidth}}&gt;{ticketData.id}&lt;/td&gt;
+                            &lt;td style={{maxWidth: props.columnWidth}}&gt;{ticketData.name ? ticketData.name : &#x27;Niet toegewezen&#x27;}&lt;/td&gt;
+                            &lt;td style={{maxWidth: props.columnWidth}}&gt;{ticketData.subject}&lt;/td&gt;
+                            &lt;td style={{maxWidth: props.columnWidth, display: props.descriptionDisplay}}&gt;{ticketData.description}&lt;/td&gt;
+                            &lt;td style={{maxWidth: props.columnWidth}}&gt;{ticketData.created_at.split(&#x27;T&#x27;, 1)[0]}&lt;/td&gt;
+                            &lt;td style={{maxWidth: props.columnWidth}}&gt;{ticketData.updated_at.split(&#x27;T&#x27;, 1)[0]}&lt;/td&gt;
+                            &lt;td style={{maxWidth: props.columnWidth}} id={&#x27;priorityid&#x27; + ticketData.id}&gt;{ticketData.status}&lt;/td&gt;
+                        &lt;/tr&gt;
+                    ))}
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;ReactPaginate
+                previousLabel={&#x27;Previous&#x27;}
+                nextLabel={&#x27;Next&#x27;}
+                pageCount={pageCount}
+                onPageChange={handlePageClick}
+                containerClassName={&#x27;pagination&#x27;}
+                previousLinkClassName={&#x27;pagination__link&#x27;}
+                nextLinkClassName={&#x27;pagination__link&#x27;}
+                disabledClassName={&#x27;pagination__link--disabled&#x27;}
+                activeClassName={&#x27;pagination__link--active&#x27;}
+            /&gt;
+        &lt;/div&gt;</code></pre><figure id="ec7a9c3e-a651-4f63-8e99-09aec8592258" class="image"><a href="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2021-01-05_at_15.20.54.png"><img style="width:1078px" src="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2021-01-05_at_15.20.54.png"/></a></figure><h2 id="1277e696-2f12-4e6a-aaaf-309cc5ff031d" class="">Iteratie 2</h2><p id="dfbd2d1e-1e61-4ce0-a54d-68d55c67f942" class="">Bij de 2e iteratie ben ik overgestapt van de demo omgeving van zendesk naar de omgeving van gillz zelf. Daar bleek echter wel dat een aantal onderdelen van een zendesk ticket niet of op ene andere manier gebruikt wordt door gillz. Hierdoor moest ik wat aanpassingen doorvoeren aan het ontwerp. Zo heb ik bijvoorbeeld prioriteit moeten veranderen voor status. Prioriteit wordt namelijk door gillz in de tickets niet ingesteld. </p><h3 id="d733973f-790d-4e4b-bf50-319991707584" class="">Api response zendesk ticket van Gillz</h3><pre id="9b6fb6c7-e2ff-4a2e-a16d-c9bae7a9bcb6" class="code"><code>{
+    &quot;id&quot;: 1365,
+    &quot;url&quot;: &quot;https://gillz.zendesk.com/api/v2/tickets/1365.json&quot;,
+    &quot;name&quot;: &quot;Bart Evers&quot;,
+    &quot;email&quot;: &quot;b.evers@gillz.nl&quot;,
+    &quot;created_at&quot;: &quot;2020-12-17T10:25:42Z&quot;,
+    &quot;updated_at&quot;: &quot;2020-12-17T10:39:09Z&quot;,
+    &quot;time_zone&quot;: &quot;Amsterdam&quot;,
+    &quot;iana_time_zone&quot;: &quot;Europe/Amsterdam&quot;,
+    &quot;phone&quot;: null,
+    &quot;shared_phone_number&quot;: null,
+    &quot;photo&quot;: null,
+    &quot;locale_id&quot;: 1005,
+    &quot;locale&quot;: &quot;nl&quot;,
+    &quot;organization_id&quot;: null,
+    &quot;role&quot;: &quot;admin&quot;,
+    &quot;verified&quot;: true,
+    &quot;external_id&quot;: null,
+    &quot;tags&quot;: [
+      
+    ],
+    &quot;alias&quot;: &quot;&quot;,
+    &quot;active&quot;: true,
+    &quot;shared&quot;: false,
+    &quot;shared_agent&quot;: false,
+    &quot;last_login_at&quot;: &quot;2020-12-15T09:28:34Z&quot;,
+    &quot;two_factor_auth_enabled&quot;: null,
+    &quot;signature&quot;: &quot;&quot;,
+    &quot;details&quot;: &quot;&quot;,
+    &quot;notes&quot;: &quot;&quot;,
+    &quot;role_type&quot;: null,
+    &quot;custom_role_id&quot;: null,
+    &quot;moderator&quot;: true,
+    &quot;ticket_restriction&quot;: null,
+    &quot;only_private_comments&quot;: false,
+    &quot;restricted_agent&quot;: false,
+    &quot;suspended&quot;: false,
+    &quot;chat_only&quot;: false,
+    &quot;default_group_id&quot;: 114095660813,
+    &quot;report_csv&quot;: false,
+    &quot;user_fields&quot;: {
+      
+    },
+    &quot;via&quot;: {
+      &quot;channel&quot;: &quot;email&quot;,
+      &quot;source&quot;: {
+        &quot;from&quot;: {
+          &quot;address&quot;: &quot;email&quot;,
+          &quot;name&quot;: &quot;Veerle van Engelshoven&quot;
+        },
+        &quot;to&quot;: {
+          &quot;name&quot;: &quot;Gillz&quot;,
+          &quot;address&quot;: &quot;support@gillz.nl&quot;
+        },
+        &quot;rel&quot;: null
+      }
+    },
+    &quot;type&quot;: null,
+    &quot;subject&quot;: &quot;Fwd: Bestelsite URGENT&quot;,
+    &quot;raw_subject&quot;: &quot;Fwd: Bestelsite URGENT&quot;,
+    &quot;description&quot;: &quot;description&quot;,
+    &quot;priority&quot;: null,
+    &quot;status&quot;: &quot;open&quot;,
+    &quot;recipient&quot;: &quot;support@gillz.nl&quot;,
+    &quot;requester_id&quot;: 116311338434,
+    &quot;submitter_id&quot;: 116311338434,
+    &quot;assignee_id&quot;: 360286634253,
+    &quot;group_id&quot;: 114095660813,
+    &quot;collaborator_ids&quot;: [
+      360286634253,
+      376990453299,
+      385533210074
+    ],
+    &quot;follower_ids&quot;: [
+      360286634253,
+      376990453299,
+      385533210074
+    ],
+    &quot;email_cc_ids&quot;: [
+      
+    ],
+    &quot;forum_topic_id&quot;: null,
+    &quot;problem_id&quot;: null,
+    &quot;has_incidents&quot;: false,
+    &quot;is_public&quot;: true,
+    &quot;due_at&quot;: null,
+    &quot;custom_fields&quot;: [
+      
+    ],
+    &quot;satisfaction_rating&quot;: null,
+    &quot;sharing_agreement_ids&quot;: [
+      
+    ],
+    &quot;fields&quot;: [
+      
+    ],
+    &quot;followup_ids&quot;: [
+      
+    ],
+    &quot;brand_id&quot;: 114095136673,
+    &quot;allow_channelback&quot;: false,
+    &quot;allow_attachments&quot;: true,
+    &quot;result_type&quot;: &quot;ticket&quot;
+  },</code></pre><figure id="95c4323e-f76f-4d1d-95e6-1044a652e077" class="image"><a href="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2021-01-05_at_16.17.38.png"><img style="width:1297px" src="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Screenshot_2021-01-05_at_16.17.38.png"/></a></figure><figure id="eb82ec26-e61a-4e53-9a00-3dd7cf405fe7" class="link-to-page"><a href="Zendesk%20component%20f81a107d5ac74009afdc7bced0925fa4/Algemene%20feedback%20Zendesk%20component%20eb82ec26e61a4e539a003dd7cf405fe7.html">Algemene feedback Zendesk component</a></figure><p id="35816d3d-0d3b-4c48-ba78-aa8f44eeb896" class="">
 </p></div></article></body></html>

@@ -625,5 +625,63 @@ blockquote {
 }
 	
 </style></head><body><article id="7a882f61-0944-4310-8223-cc0b67c78564" class="page sans"><header><h1 class="page-title">DevOps component</h1></header><div class="page-body"><h2 id="a9748aa9-9914-4ce1-a71a-9c9731b77eba" class="">Doel van het component</h2><ul id="6e25219c-7dce-41da-be86-574cd9a74871" class="bulleted-list"><li>Developers informatie geven over de status van de DevOps build pipelines van Gillz.</li></ul><h1 id="38d9f908-796d-4d89-bbcf-7153ae6c5cee" class="">Techniek</h1><h2 id="c82e385d-bdad-4ca6-92d2-2f546fe16a98" class="">Technische obstakels</h2><p id="4261247e-bf97-4bc7-9328-a6f009f06093" class="">Hoe werkt de authenticatie van de devOps api?</p><p id="4a0d6b4a-3f2b-4413-a726-9a8ce6e721d2" class="">Welke onderdelen van de api heb ik nodig? (hij is mega uitgebreid)</p><p id="ff3786f4-3725-4f25-8720-acbd94175a7b" class="">Hoe handel ik de api response af?</p><h2 id="d3af20c8-7e3b-4df3-8fb9-236dc41131ff" class="">technische flow</h2><figure id="762a077c-31ee-480e-8ca9-85cea3f81515" class="image"><a href="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2020-11-22_at_21.19.20.png"><img style="width:564px" src="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2020-11-22_at_21.19.20.png"/></a></figure><h2 id="8d98ae3d-0dae-4ec3-ac0a-3e23a7c1edf4" class="">Authenticatie Access token</h2><p id="b66d5c6a-2afd-4b4b-b8ed-e2d6fa858210" class="">Voor authenticatie van de api kan ik gebruik maken van een access token in azure devops. Dit is een vervanging van de username en password authenticatie en een goed alternatief op geavanceerdere variates zoals Oauth.</p><h2 id="f7cca751-0d34-4138-84c8-69189ebd96ab" class="">Welke onderdelen van de Api heb ik nodig?</h2><p id="bc109c26-1872-48bf-aaad-1118cce4af7d" class="">voor nu heb ik voornamelijk de builds en pipelines delen van de api nodig. Deze zijn namelijk direct gekoppeld met de gewenste functionaliteit.</p><p id="638cd2a2-4a15-4850-9080-bbf7e559e755" class="">
-</p><h2 id="1cc7e5b6-f9f6-420a-a42c-c54ed625f38d" class="">Design</h2><figure id="e5a8c3fc-ed82-4a0a-addf-2dd39e667dd9" class="image"><a href="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2020-11-12_at_14.20.38.png"><img style="width:1604px" src="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2020-11-12_at_14.20.38.png"/></a></figure><p id="85d5b506-9ac4-452c-adcf-e4ffba7b21a9" class="">De informatie wordt getoont in de vorm van een listview waar de laatste builds worden weergegeven. Wanneer een build nog niet draait komt deze wel al in de lijst te staan, maar dan met een wachtende status en zonder start tijd. Wanneer een build faalt veranderd de status badge in een rode error status. Een status badge is een relatief standaard item in build pipelines. Echter vervang ik de standaard badge door een minimalistischer ontwerp.</p><p id="d9b708ee-7291-42eb-9336-8af3b65c980b" class="">
-</p><figure id="e267277c-9c8c-4cc4-9a2c-4ba77308f054" class="link-to-page"><a href="DevOps%20component%207a882f61094443108223cc0b67c78564/Devops%20Component%20algemene%20feedback%20e267277c9c8c4cc49a2c4ba77308f054.html">Devops Component algemene feedback</a></figure></div></article></body></html>
+</p><h2 id="1cc7e5b6-f9f6-420a-a42c-c54ed625f38d" class="">Design</h2><figure id="e5a8c3fc-ed82-4a0a-addf-2dd39e667dd9" class="image"><a href="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2020-11-12_at_14.20.38.png"><img style="width:1604px" src="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2020-11-12_at_14.20.38.png"/></a></figure><p id="85d5b506-9ac4-452c-adcf-e4ffba7b21a9" class="">De informatie wordt getoont in de vorm van een listview waar de laatste builds worden weergegeven. Wanneer een build nog niet draait komt deze wel al in de lijst te staan, maar dan met een wachtende status en zonder start tijd. Wanneer een build faalt veranderd de status badge in een rode error status. Een status badge is een relatief standaard item in build pipelines. Echter vervang ik de standaard badge door een minimalistischer ontwerp.</p><h2 id="820b61f9-9d88-4701-ab03-59e19048c115" class="">Iteratie 1</h2><p id="5cdac65b-fc38-4280-af98-ead141f9a9e5" class="">Dit is de eerst gebouwde versie van het devops build component. Zoals u kunt zien is de data die in de tabel staat iets gewijzigd naar: </p><ul id="4252da95-8d20-4b6e-99b1-569e2bc8ad09" class="bulleted-list"><li>id</li></ul><ul id="c5bc0ba4-5d68-4a95-a9cc-26f8b06bea0c" class="bulleted-list"><li>naam</li></ul><ul id="efdfd680-4bfc-44fd-9be6-decb6078f8bc" class="bulleted-list"><li>type</li></ul><ul id="eac8ae78-c033-43e7-b243-9792a0f1e9fc" class="bulleted-list"><li>queue time</li></ul><ul id="88ea699e-6f3a-41f1-b3ab-f159187bd098" class="bulleted-list"><li>finish time</li></ul><ul id="9993b5bb-5edf-40b4-9613-21453d36156d" class="bulleted-list"><li>resultaat</li></ul><p id="845fd7d0-36fc-4b71-a42b-deb2eb5586dd" class="">Over het algemeen worden nu bijvoorbeeld interface wijzigingen gedaan door document.queryselector functies. Dit is alleen niet bepaald wenselijk omdat het relatief traag is. Dit wordt later in een nieuwe iteratie opgelost.</p><figure id="d868461f-8533-480c-971a-8084add64573" class="image"><a href="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2021-01-04_at_17.20.00.png"><img style="width:2626px" src="DevOps%20component%207a882f61094443108223cc0b67c78564/Screenshot_2021-01-04_at_17.20.00.png"/></a></figure><h2 id="e22a6f0b-75c0-4759-b2ce-7ccde1579580" class="">Iteratie 2</h2><p id="0207c638-fe27-4df8-8aaa-1893a53e1f5b" class="">Deze iteratie ging voornamelijk om het refactoren van de code. Zo heb ik een functie geschreven die automatisch de grootte van het array sliced op de waarde van de hoogte van de container waar hij in staat. Hierdoor is het component heel dynamisch op de overview en volledige pagina te tonen. </p><pre id="035a48f7-66d3-40a5-a87e-67a1e0686790" class="code"><code>const heightSlice = (value) =&gt; {
+        if (value) {
+            const container = document.getElementById(&#x27;builds-container&#x27;);
+            const offsetHeight = container!.offsetHeight;
+            const dividedHeight = offsetHeight / 60;
+            setSlicedRequests(requests.slice(0, Math.round(dividedHeight)));
+        } else {
+            setSlicedRequests(requests);
+        }
+    };</code></pre><p id="02ce1f33-6b74-41c5-b0f3-65d5b947b721" class="">Zo heb ik ook een functie herschreven die de statusicons weergaf. Eerst was dit nogal een lang stuk code voor vrij weinig functionaliteit. Zie hieronder de oude situatie:</p><pre id="b983968f-9d67-4c2e-90c1-d049439b0484" class="code"><code>function resultStatus() {
+        Object.keys(requests).map((i) =&gt; {
+            if (requests[i].result === 0) {
+                const success = document.querySelectorAll(&#x27;#result&#x27; + requests[i].result);
+                success.forEach((el) =&gt; {
+                    el.classList.remove(&#x27;failed&#x27;);
+                    el.classList.remove(&#x27;cancelled&#x27;);
+                    el.classList.remove(&#x27;running&#x27;);
+                    el.classList.add(&#x27;success&#x27;);
+                });
+            } else if (!requests[i].result) {
+                const running = document.querySelectorAll(&#x27;#result&#x27; + requests[i].result);
+                running.forEach((el) =&gt; {
+                    el.classList.remove(&#x27;success&#x27;);
+                    el.classList.remove(&#x27;failed&#x27;);
+                    el.classList.add(&#x27;running&#x27;);
+                });
+            } else if (requests[i].result === 2) {
+                const failed = document.querySelectorAll(&#x27;#result&#x27; + requests[i].result);
+                failed.forEach((el) =&gt; {
+                    el.classList.remove(&#x27;success&#x27;);
+                    el.classList.remove(&#x27;running&#x27;);
+                    el.classList.remove(&#x27;cancelled&#x27;);
+                    el.classList.add(&#x27;failed&#x27;);
+                });
+            } else if (requests[i].result === 3) {
+                const cancelled = document.querySelectorAll(&#x27;#result&#x27; + requests[i].result);
+                cancelled.forEach((el) =&gt; {
+                    el.classList.remove(&#x27;success&#x27;);
+                    el.classList.remove(&#x27;failed&#x27;);
+                    el.classList.remove(&#x27;running&#x27;);
+                    el.classList.add(&#x27;cancelled&#x27;);
+                });
+            }
+        });
+    }</code></pre><p id="34894577-9d99-4155-9d95-c009bdd76378" class="">Dit is simpel herschreven naar een korte switchcase waar een argument aan toegevoegd wordt. De uitkomst is een stuk efficienter en duidelijker leesbaar.</p><pre id="e0cbeeb6-179b-476c-b157-78705590dae7" class="code"><code>const statusIcon = (status) =&gt; {
+        switch(status) {
+            case 0:
+                return &#x27;success&#x27;;
+                break;
+            case 2:
+                return &#x27;failed&#x27;;
+                break;
+            case 3:
+                return &#x27;cancelled&#x27;;
+                break;
+            default:
+                return &#x27;running&#x27;;
+                break;
+        }
+    };</code></pre><figure id="e267277c-9c8c-4cc4-9a2c-4ba77308f054" class="link-to-page"><a href="DevOps%20component%207a882f61094443108223cc0b67c78564/Devops%20Component%20algemene%20feedback%20e267277c9c8c4cc49a2c4ba77308f054.html">Devops Component algemene feedback</a></figure></div></article></body></html>
